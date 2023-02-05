@@ -11,5 +11,10 @@ exports.userRegister = asyncHandler(async (req, res, next) => {
     role,
   });
 
-  res.send(user);
+  const token = await user.getJwtToken();
+
+  res.status(200).json({
+    success: true,
+    token,
+  });
 });
